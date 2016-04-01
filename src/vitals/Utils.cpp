@@ -40,5 +40,3 @@ util::terminate( const size_t line, const char* func, const char* file )
 
 //==================================================================================================
 // M E T H O D S   C O D E   S E C T I O N
-
-#endif
