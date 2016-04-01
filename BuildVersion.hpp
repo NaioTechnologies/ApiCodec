@@ -19,9 +19,9 @@
 
 #define PROGRAM_NAME            "ApiCodec"
 #define PROGRAM_DESCRIPTION     "ApiCodec"
-#define PROGRAM_MAJOR_VERSION   ""
-#define PROGRAM_MINOR_VERSION   ""
-#define PROGRAM_REVISION        ""
+#define PROGRAM_MAJOR_VERSION   "0"
+#define PROGRAM_MINOR_VERSION   "0"
+#define PROGRAM_REVISION        "1"
 #define PROGRAM_OWNER           "Naio Technologies"
 
 #endif
