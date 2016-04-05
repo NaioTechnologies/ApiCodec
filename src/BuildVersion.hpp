@@ -17,11 +17,11 @@
 #ifndef BUILDVERSION_H
 #define BUILDVERSION_H
 
-#define PROGRAM_NAME            "ApiCodec"
-#define PROGRAM_DESCRIPTION     "ApiCodec"
-#define PROGRAM_MAJOR_VERSION   "0"
-#define PROGRAM_MINOR_VERSION   "0"
-#define PROGRAM_REVISION        "1"
-#define PROGRAM_OWNER           "Naio Technologies"
+#define LIBRARY_NAME            "ApiCodec"
+#define LIBRARY_DESCRIPTION     "ApiCodec"
+#define LIBRARY_MAJOR_VERSION   0
+#define LIBRARY_MINOR_VERSION   0
+#define LIBRARY_PATCH_VERSION   1
+#define LIBRARY_OWNER           "Naio Technologies"
 
 #endif

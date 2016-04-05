@@ -113,7 +113,7 @@ target_link_libraries( lib${PROJECT_NAME} )
 #
 #   Library version
 #
-file( READ BuildVersion.hpp LIB_VERSION )
+file( READ src/BuildVersion.hpp LIB_VERSION )
 
 string( REGEX MATCH "define[ \t]+LIBRARY_MAJOR_VERSION[ \t]+([0-9]+)+"
         LIBRARY_MAJOR_VERSION_MATCH "${LIB_VERSION}" )
@@ -141,4 +141,3 @@ set_target_properties( lib${PROJECT_NAME} PROPERTIES
         CLEAN_DIRECT_OUTPUT 1
         OUTPUT_NAME ${PROJECT_NAME}
         RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${PROJECT_NAME} )
-
