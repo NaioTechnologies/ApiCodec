@@ -32,7 +32,7 @@ set( CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/modules )
 #
 set( CMAKE_C_FLAGS "-fsigned-char -fdiagnostics-color" )
 
-set( CMAKE_CXX_FLAGS "-W -Wall -std=c++14 -Wextra -Winline -Wc++11-compat -Wconversion \
+set( CMAKE_CXX_FLAGS "-W -Wall -Werror -std=c++14 -Wextra -Winline -Wc++11-compat -Wconversion \
 	-Wconversion-null -Wsign-conversion -Wctor-dtor-privacy -Wdelete-non-virtual-dtor -Wnarrowing \
 	-Wnon-virtual-dtor -Wreorder -Wshadow -Woverloaded-virtual -Wno-pmf-conversions -Wsign-promo \
 	-Wcast-align -Wmissing-declarations -Woverlength-strings -Wunreachable-code \
