@@ -666,11 +666,11 @@ void FormatIterator::accept(const T& value)
 // Formatting options which can't be natively represented using the ostream
 // state are returned in the extraFlags parameter which is a bitwise
 // combination of values from the ExtraFormatFlags enum.
-inline const char* FormatIterator::streamStateFromFormat(std::ostream& out,
-                                                         unsigned int& extraFlags,
-                                                         const char* fmtStart,
-                                                         int variableWidth,
-                                                         int variablePrecision)
+const char* FormatIterator::streamStateFromFormat(std::ostream& out,
+                                                  unsigned int& extraFlags,
+                                                  const char* fmtStart,
+                                                  int variableWidth,
+                                                  int variablePrecision)
 {
     if(*fmtStart != '%')
     {
