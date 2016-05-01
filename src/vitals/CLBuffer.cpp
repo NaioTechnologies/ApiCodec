@@ -70,7 +70,7 @@ cl_copy::Buffer::Buffer( uint8_t* d, const size_t sz, bool own, bool deepCopy )
 {
 	if( size_ == 0 )
 	{
-		throw cl::Exception( "buffer size cannot not be null", CL_ORIGIN );
+		throw cl::Exception( "buffer size cannot not be null", ORIGIN );
 	}
 
 	if( deepCopy )

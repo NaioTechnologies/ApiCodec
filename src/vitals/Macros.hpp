@@ -43,7 +43,7 @@
 #define CL_CLEAR(x)		memset( &(x), 0, sizeof (x) )
 
 /// Defines the origin point where it is placed.
-#define CL_ORIGIN			__LINE__, __func__, __FILE__
+#define ORIGIN			__LINE__, __func__, __FILE__
 
 /// Defines a generic macro to help generating enum names to values.
 #define CL_CHECK_ENUM( rs, value )  if( rs == #value ) return value;
