@@ -2,6 +2,7 @@
 #define OZCORE_NAIO01CODEC_HPP
 
 #include <memory>
+#include <vector>
 #include "vitals/CLBuffer.hpp"
 #include "BaseNaio01Packet.hpp"
 

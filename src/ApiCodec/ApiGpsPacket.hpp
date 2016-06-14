@@ -18,15 +18,15 @@ public:
 public:
 	ApiGpsPacket( );
 
-	ApiGpsPacket( GpsType gpsType_, ulong time_, double lat_, double lon_, double alt_,
+	ApiGpsPacket( GpsType gpsType_, uint64_t time_, double lat_, double lon_, double alt_,
 				  uint8_t unit_, uint8_t satUsed_, uint8_t quality_, double groundSpeed_,
 				  double trackOrientation_ );
 
 	~ApiGpsPacket( );
 
-	virtual cl::BufferUPtr encode() override;
+	virtual cl_copy::BufferUPtr encode() override;
 
-	virtual void decode( uint8_t *buffer, uint bufferSize ) override;
+	virtual void decode( uint8_t *buffer, uint32_t bufferSize ) override;
 
 	virtual uint8_t getPacketId() override
 	{
@@ -35,7 +35,7 @@ public:
 
 public:
 	GpsType gpsType;
-	ulong time;
+	uint64_t time;
 	double lat;
 	double lon;
 	double alt;

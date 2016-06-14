@@ -10,25 +10,21 @@ class BaseNaio01Packet
 	BaseNaio01Packet();
 	virtual ~BaseNaio01Packet();
 
-	virtual cl::BufferUPtr encode() = 0;
+	virtual cl_copy::BufferUPtr encode() = 0;
 
-	virtual void decode( uint8_t *buffer, uint bufferSize ) = 0;
+	virtual void decode( uint8_t *buffer, uint32_t bufferSize ) = 0;
 
 	virtual uint8_t getPacketId() = 0;
 
-	cl::BufferUPtr getPreparedBuffer( cl::BufferUPtr buffer, const uint8_t packetId );
+	cl_copy::BufferUPtr getPreparedBuffer( cl_copy::BufferUPtr buffer, const uint8_t packetId );
 
 	protected:
 
-	uint getStartPayloadIndex();
-
-	template< class... Args >
-	void ignore( Args&& ... )
-	{ }
+	uint32_t getStartPayloadIndex();
 
 	private:
 
-	uint startPayloadIndex = 11;
+	uint32_t startPayloadIndex = 11;
 };
 
 typedef std::shared_ptr<BaseNaio01Packet> BaseNaio01PacketPtr;

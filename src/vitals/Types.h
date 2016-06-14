@@ -40,7 +40,6 @@ typedef enum _LineMode {
 	LM_TUYAU = 3,
 }LINE_MODE;
 
-
 enum class API_MESSAGE : uint8_t
 {
 	API_MESSAGE_NONE = 0x00,

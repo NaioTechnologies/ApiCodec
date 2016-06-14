@@ -28,7 +28,7 @@
 //--------------------------------------------------------------------------------------------------
 //
 void
-util::terminate( const size_t line, const char* func, const char* file )
+util_copy::terminate( const size_t line, const char* func, const char* file )
 {
 	std::cout << "terminated from \'" << func << "()\' in " << file << ", at line #" << line;
 	std::terminate();

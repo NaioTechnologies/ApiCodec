@@ -15,8 +15,8 @@
 //
 //==================================================================================================
 
-#ifndef CLBUFFER_HPP
-#define CLBUFFER_HPP
+#ifndef COPY_CLBUFFER_HPP
+#define COPY_CLBUFFER_HPP
 
 //==================================================================================================
 // I N C L U D E   F I L E S
@@ -35,14 +35,14 @@
 //==================================================================================================
 // C L A S S E S
 
-namespace cl
+namespace cl_copy
 {
 
 /// This class encapsulates uint8_t buffers and takes care of the destruction of of the internal
 /// data. The smart pointers should be used for sager memory management.
 ///
 class Buffer
-	: private util::NonCopyable< Buffer >
+	: private util_copy::NonCopyable< Buffer >
 {
 	typedef std::shared_ptr< Buffer > BufferPtr;
 	typedef std::unique_ptr< Buffer > UniqueBufferPtr;

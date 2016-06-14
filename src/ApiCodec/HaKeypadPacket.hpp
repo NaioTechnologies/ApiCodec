@@ -11,9 +11,9 @@ public:
 	HaKeypadPacket( uint8_t keypad );
 	~HaKeypadPacket( );
 
-	virtual cl::BufferUPtr encode() override;
+	virtual cl_copy::BufferUPtr encode() override;
 
-	virtual void decode( uint8_t *buffer, uint bufferSize ) override;
+	virtual void decode( uint8_t *buffer, uint32_t bufferSize ) override;
 
 	virtual uint8_t getPacketId() override
 	{

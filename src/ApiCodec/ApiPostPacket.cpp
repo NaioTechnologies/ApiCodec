@@ -18,9 +18,9 @@ ApiPostPacket::~ApiPostPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiPostPacket::encode()
+cl_copy::BufferUPtr ApiPostPacket::encode()
 {
-	cl::BufferUPtr buffer = cl::unique_buffer( 1 + (postList.size() * (1 + 1 + 4 + 4)) );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 1 + (postList.size() * (1 + 1 + 4 + 4)) );
 
 	uint cpt = 0;
 
@@ -53,7 +53,7 @@ cl::BufferUPtr ApiPostPacket::encode()
 //
 void ApiPostPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

@@ -25,10 +25,10 @@ uint BaseNaio01Packet::getStartPayloadIndex()
 
 //=============================================================================
 //
-cl::BufferUPtr BaseNaio01Packet::getPreparedBuffer( cl::BufferUPtr buffer, const uint8_t packetId )
+cl_copy::BufferUPtr BaseNaio01Packet::getPreparedBuffer( cl_copy::BufferUPtr buffer, const uint8_t packetId )
 {
 	int packetSize = 6 + 1 + 4;
-	cl::BufferUPtr preparedBuffer = cl::unique_buffer( packetSize );
+	cl_copy::BufferUPtr preparedBuffer = cl_copy::unique_buffer( packetSize );
 
 	// HEADER
 	(*preparedBuffer)[0] = 0x4e;

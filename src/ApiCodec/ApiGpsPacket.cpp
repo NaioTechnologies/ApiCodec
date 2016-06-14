@@ -19,9 +19,9 @@ ApiGpsPacket::ApiGpsPacket( GpsType gpsType_, ulong time_, double lat_, double l
 		lon{ lon_ },
 		alt{ alt_ },
 		unit{ unit_ },
-		satUsed{ satUsed_ }, 
-	    quality{ quality_ }, 
-	    groundSpeed{ groundSpeed_ }, 
+		satUsed{ satUsed_ },
+	    quality{ quality_ },
+	    groundSpeed{ groundSpeed_ },
 	    trackOrientation{ trackOrientation_ }
 {
 
@@ -36,11 +36,11 @@ ApiGpsPacket::~ApiGpsPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiGpsPacket::encode()
+cl_copy::BufferUPtr ApiGpsPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( 1 + 8 + 8 + 8 + 8 + 1 + 1 + 1 + 8 + 8 );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 1 + 8 + 8 + 8 + 8 + 1 + 1 + 1 + 8 + 8 );
 
 	cl::u8Array< 8 > encodedTime = cl::u64_to_u8Array( time );
 	cl::u8Array< 8 > encodedLat = cl::double_to_u8Array( lat );
@@ -93,7 +93,7 @@ cl::BufferUPtr ApiGpsPacket::encode()
 //
 void ApiGpsPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

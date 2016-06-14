@@ -15,8 +15,8 @@
 //
 //=================================================================================================
 
-#ifndef CLEXCEPTION_H
-#define CLEXCEPTION_H
+#ifndef COPY_CLEXCEPTION_H
+#define COPY_CLEXCEPTION_H
 
 //=================================================================================================
 // I N C L U D E   F I L E S   A N D   F O R W A R D   D E C L A R A T I O N S

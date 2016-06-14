@@ -103,7 +103,7 @@ add_definitions( -fPIC -DDECL_SPEC )
 #
 if( CMAKE_BUILD_TYPE STREQUAL "Debug" )
     if( WITH_SANITIZERS )
-        target_link_libraries( lib${PROJECT_NAME} -lasan -lubsan )
+        target_link_libraries( lib${PROJECT_NAME} -lasan -lubsan -llsan )
     endif( WITH_SANITIZERS )
 endif()
 

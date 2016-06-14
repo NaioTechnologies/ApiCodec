@@ -18,8 +18,8 @@
 //
 //=============================================================================
 
-#ifndef CLBYTECONVERSION_H
-#define CLBYTECONVERSION_H
+#ifndef COPY_CLBYTECONVERSION_H
+#define COPY_CLBYTECONVERSION_H
 
 //=============================================================================
 // I N C L U D E   F I L E S

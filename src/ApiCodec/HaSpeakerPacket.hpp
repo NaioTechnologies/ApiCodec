@@ -11,7 +11,7 @@ public:
 	HaSpeakerPacket( uint8_t duration, uint8_t volume );
 	~HaSpeakerPacket( );
 
-	virtual cl::BufferUPtr encode() override;
+	virtual cl_copy::BufferUPtr encode() override;
 
 	virtual void decode( uint8_t *buffer, uint bufferSize ) override;
 

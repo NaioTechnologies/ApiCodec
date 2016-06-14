@@ -27,7 +27,7 @@ ApiGprsPacket::ApiGprsPacket( uint16_t port_, std::string adress_ ) : gprsComman
 ApiGprsPacket::ApiGprsPacket( GprsCommandeType gprsCommandeType_, uint8_t *buffer, uint bufferSize )
 		: gprsCommandeType{ gprsCommandeType_ }
 {
-	dataPtr = cl::unique_buffer( buffer, bufferSize, false );
+	dataPtr = cl_copy::unique_buffer( buffer, bufferSize, false );
 }
 
 //=============================================================================
@@ -39,21 +39,21 @@ ApiGprsPacket::~ApiGprsPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiGprsPacket::encode()
+cl_copy::BufferUPtr ApiGprsPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer;
+	cl_copy::BufferUPtr buffer;
 
 	if( gprsCommandeType == GprsCommandeType::LAST_COMMAND_OK or gprsCommandeType == GprsCommandeType::LAST_COMMAND_KO or gprsCommandeType == GprsCommandeType::CLOSE_CONNECTION )
 	{
-		buffer = cl::unique_buffer( 1 );
+		buffer = cl_copy::unique_buffer( 1 );
 
 		(*buffer)[cpt++] = static_cast<uint8_t>( gprsCommandeType );
 	}
 	else if( gprsCommandeType == GprsCommandeType::OPEN_CONNECTION )
 	{
-		buffer = cl::unique_buffer( 1 + 2 + 255 );
+		buffer = cl_copy::unique_buffer( 1 + 2 + 255 );
 
 		(*buffer)[cpt++] = static_cast<uint8_t>( gprsCommandeType );
 
@@ -77,7 +77,7 @@ cl::BufferUPtr ApiGprsPacket::encode()
 	}
 	else if( gprsCommandeType == GprsCommandeType::SEND_DATA or gprsCommandeType == GprsCommandeType::DATA_RECEIVED )
 	{
-		buffer = cl::unique_buffer( 1 + 2 + dataPtr->size() );
+		buffer = cl_copy::unique_buffer( 1 + 2 + dataPtr->size() );
 
 		(*buffer)[cpt++] = static_cast<uint8_t>( gprsCommandeType );
 
@@ -93,7 +93,7 @@ cl::BufferUPtr ApiGprsPacket::encode()
 	}
 	else
 	{
-		buffer = cl::unique_buffer( 1);
+		buffer = cl_copy::unique_buffer( 1);
 
 		(*buffer)[cpt++] = static_cast<uint8_t>( GprsCommandeType::LAST_COMMAND_KO );
 	}
@@ -105,7 +105,7 @@ cl::BufferUPtr ApiGprsPacket::encode()
 //
 void ApiGprsPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 
@@ -141,7 +141,7 @@ void ApiGprsPacket::decode( uint8_t *buffer, uint bufferSize )
 
 		uint16_t dataSize = cl::u8Array_to_u16( encodedSize );
 
-		dataPtr = cl::unique_buffer( dataSize );
+		dataPtr = cl_copy::unique_buffer( dataSize );
 
 		for( uint i = 0 ; i < dataSize ; i++ )
 		{

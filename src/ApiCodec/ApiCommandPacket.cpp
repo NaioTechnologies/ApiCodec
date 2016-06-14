@@ -25,11 +25,11 @@ ApiCommandPacket::~ApiCommandPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiCommandPacket::encode()
+cl_copy::BufferUPtr ApiCommandPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( 1 );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 1 );
 
 	(*buffer)[cpt++] = static_cast<uint8_t>( commandType );
 
@@ -40,7 +40,7 @@ cl::BufferUPtr ApiCommandPacket::encode()
 //
 void ApiCommandPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

@@ -15,8 +15,8 @@
 //
 //==================================================================================================
 
-#ifndef UTILS_HPP
-#define UTILS_HPP
+#ifndef COPY_UTILS_HPP
+#define COPY_UTILS_HPP
 
 //==================================================================================================
 // I N C L U D E   F I L E S   A N D   F O R W A R D   D E C L A R A T I O N S
@@ -30,7 +30,7 @@
 //==================================================================================================
 // G L O B A L S
 
-namespace util
+namespace util_copy
 {
 
 /// Utility function to turn off the unused parameter warning.

@@ -22,13 +22,13 @@ public:
 	ApiGprsPacket( );
 	ApiGprsPacket( GprsCommandeType gprsCommandeType_ );
 	ApiGprsPacket( uint16_t port_, std::string adress_ );
-	ApiGprsPacket( GprsCommandeType gprsCommandeType_, uint8_t *buffer, uint bufferSize );
+	ApiGprsPacket( GprsCommandeType gprsCommandeType_, uint8_t *buffer, uint32_t bufferSize );
 
 	~ApiGprsPacket( );
 
-	virtual cl::BufferUPtr encode() override;
+	virtual cl_copy::BufferUPtr encode() override;
 
-	virtual void decode( uint8_t *buffer, uint bufferSize ) override;
+	virtual void decode( uint8_t *buffer, uint32_t bufferSize ) override;
 
 	virtual uint8_t getPacketId() override
 	{
@@ -39,7 +39,7 @@ public:
 	GprsCommandeType gprsCommandeType;
 	uint16_t port;
 	std::string adress;
-	cl::BufferUPtr dataPtr;
+	cl_copy::BufferUPtr dataPtr;
 };
 
 typedef std::shared_ptr<ApiGprsPacket> ApiGprsPacketPacketPtr;

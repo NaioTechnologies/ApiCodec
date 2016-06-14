@@ -32,11 +32,11 @@ ApiCameraExtrinsicsPacket::~ApiCameraExtrinsicsPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiCameraExtrinsicsPacket::encode()
+cl_copy::BufferUPtr ApiCameraExtrinsicsPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( ( 9 * 8 ) + ( 3 * 8 ) );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( ( 9 * 8 ) + ( 3 * 8 ) );
 
 	for( uint matIdx = 0 ; matIdx < 9 ; matIdx++ )
 	{
@@ -65,7 +65,7 @@ cl::BufferUPtr ApiCameraExtrinsicsPacket::encode()
 //
 void ApiCameraExtrinsicsPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

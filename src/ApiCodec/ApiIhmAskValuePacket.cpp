@@ -36,11 +36,11 @@ ApiIhmAskValuePacket::~ApiIhmAskValuePacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiIhmAskValuePacket::encode()
+cl_copy::BufferUPtr ApiIhmAskValuePacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( 1 + 20 + 20 + 2 + 2 + 2 + 2 + 20 );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 1 + 20 + 20 + 2 + 2 + 2 + 2 + 20 );
 
 	(*buffer)[cpt++] = static_cast<uint8_t>( id );
 
@@ -82,7 +82,7 @@ cl::BufferUPtr ApiIhmAskValuePacket::encode()
 //
 void ApiIhmAskValuePacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

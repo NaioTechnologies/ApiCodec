@@ -71,11 +71,11 @@ ApiRunPlotPacket::~ApiRunPlotPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiRunPlotPacket::encode()
+cl_copy::BufferUPtr ApiRunPlotPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( 2 + ( ( 4 + 4 + 2 ) * rowCount ) + 1 + 1 + 4 + 2 + 2 + 4 + 1 + 1 + 1 + 1 );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 2 + ( ( 4 + 4 + 2 ) * rowCount ) + 1 + 1 + 4 + 2 + 2 + 4 + 1 + 1 + 1 + 1 );
 
 	cl::u8Array< 2 > encodedRowCount = cl::u16_to_u8Array( rowCount );
 	(*buffer)[cpt++] = static_cast<uint8_t>( encodedRowCount[ 0 ] );
@@ -144,7 +144,7 @@ cl::BufferUPtr ApiRunPlotPacket::encode()
 //
 void ApiRunPlotPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

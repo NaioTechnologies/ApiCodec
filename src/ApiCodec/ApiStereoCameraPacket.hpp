@@ -20,12 +20,12 @@ public:
 	};
 
 	ApiStereoCameraPacket( );
-	ApiStereoCameraPacket( ImageType imageType_, cl::BufferUPtr dataBuffer_ );
+	ApiStereoCameraPacket( ImageType imageType_, cl_copy::BufferUPtr dataBuffer_ );
 	~ApiStereoCameraPacket( );
 
-	virtual cl::BufferUPtr encode() override;
+	virtual cl_copy::BufferUPtr encode() override;
 
-	virtual void decode( uint8_t *buffer, uint bufferSize ) override;
+	virtual void decode( uint8_t *buffer, uint32_t bufferSize ) override;
 
 	virtual uint8_t getPacketId() override
 	{
@@ -34,7 +34,7 @@ public:
 
 public:
 	ImageType imageType;
-	cl::BufferUPtr dataBuffer;
+	cl_copy::BufferUPtr dataBuffer;
 };
 
 typedef std::shared_ptr<ApiStereoCameraPacket> ApiStereoCameraPacketPtr;

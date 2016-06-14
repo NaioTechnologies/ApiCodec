@@ -15,8 +15,8 @@
 //
 //=================================================================================================
 
-#ifndef CLBASEEXCEPTION_H
-#define CLBASEEXCEPTION_H
+#ifndef COPY_CLBASEEXCEPTION_H
+#define COPY_CLBASEEXCEPTION_H
 
 //=================================================================================================
 // I N C L U D E   F I L E S

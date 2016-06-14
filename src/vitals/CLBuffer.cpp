@@ -36,7 +36,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-cl::Buffer::Buffer( const size_t sz )
+cl_copy::Buffer::Buffer( const size_t sz )
 	: data_{ }
 	, size_{ sz }
 	, owner_{ true }
@@ -62,7 +62,7 @@ cl::Buffer::Buffer( const size_t sz )
 
 //--------------------------------------------------------------------------------------------------
 //
-cl::Buffer::Buffer( uint8_t* d, const size_t sz, bool own, bool deepCopy )
+cl_copy::Buffer::Buffer( uint8_t* d, const size_t sz, bool own, bool deepCopy )
 	: data_{ }
 	, size_{ sz }
 	, owner_{ deepCopy ? true : own }
@@ -101,7 +101,7 @@ cl::Buffer::Buffer( uint8_t* d, const size_t sz, bool own, bool deepCopy )
 
 //--------------------------------------------------------------------------------------------------
 //
-cl::Buffer::Buffer( UniqueBufferPtr parentBuffer, size_t offset, size_t s )
+cl_copy::Buffer::Buffer( UniqueBufferPtr parentBuffer, size_t offset, size_t s )
 	: data_{ }
 	, size_{ }
 	, owner_{ }
@@ -124,7 +124,7 @@ cl::Buffer::Buffer( UniqueBufferPtr parentBuffer, size_t offset, size_t s )
 
 //--------------------------------------------------------------------------------------------------
 //
-cl::Buffer::~Buffer()
+cl_copy::Buffer::~Buffer()
 {
 	cleanup();
 }
@@ -135,7 +135,7 @@ cl::Buffer::~Buffer()
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::clear_chunk( uint8_t* ptr, const size_t sz )
+cl_copy::Buffer::clear_chunk( uint8_t* ptr, const size_t sz )
 {
 	std::memset( ptr, 0x00, sz );
 }
@@ -143,7 +143,7 @@ cl::Buffer::clear_chunk( uint8_t* ptr, const size_t sz )
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::set_data_and_size( uint8_t* d, const size_t s )
+cl_copy::Buffer::set_data_and_size( uint8_t* d, const size_t s )
 {
 	data_ = d;
 	size_ = s;
@@ -152,7 +152,7 @@ cl::Buffer::set_data_and_size( uint8_t* d, const size_t s )
 //--------------------------------------------------------------------------------------------------
 //
 uint8_t*
-cl::Buffer::data()
+cl_copy::Buffer::data()
 {
 	return data_;
 }
@@ -160,7 +160,7 @@ cl::Buffer::data()
 //--------------------------------------------------------------------------------------------------
 //
 const uint8_t*
-cl::Buffer::data() const
+cl_copy::Buffer::data() const
 {
 	return data_;
 }
@@ -168,7 +168,7 @@ cl::Buffer::data() const
 //--------------------------------------------------------------------------------------------------
 //
 uint8_t
-cl::Buffer::operator[]( const size_t index ) const
+cl_copy::Buffer::operator[]( const size_t index ) const
 {
 	return data_[index];
 }
@@ -176,7 +176,7 @@ cl::Buffer::operator[]( const size_t index ) const
 //--------------------------------------------------------------------------------------------------
 //
 uint8_t&
-cl::Buffer::operator[]( const size_t index )
+cl_copy::Buffer::operator[]( const size_t index )
 {
 	return data_[index];
 }
@@ -184,7 +184,7 @@ cl::Buffer::operator[]( const size_t index )
 //--------------------------------------------------------------------------------------------------
 //
 uint8_t
-cl::Buffer::at( const size_t index ) const
+cl_copy::Buffer::at( const size_t index ) const
 {
 	if( index > size_ )
 	{
@@ -197,7 +197,7 @@ cl::Buffer::at( const size_t index ) const
 //--------------------------------------------------------------------------------------------------
 //
 uint8_t&
-cl::Buffer::at( const size_t index )
+cl_copy::Buffer::at( const size_t index )
 {
 	if( index > size_ )
 	{
@@ -210,7 +210,7 @@ cl::Buffer::at( const size_t index )
 //--------------------------------------------------------------------------------------------------
 //
 size_t
-cl::Buffer::size() const
+cl_copy::Buffer::size() const
 {
 	return size_;
 }
@@ -218,7 +218,7 @@ cl::Buffer::size() const
 //--------------------------------------------------------------------------------------------------
 //
 bool
-cl::Buffer::is_owner() const
+cl_copy::Buffer::is_owner() const
 {
 	return owner_;
 }
@@ -226,7 +226,7 @@ cl::Buffer::is_owner() const
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::release_ownership()
+cl_copy::Buffer::release_ownership()
 {
 	owner_ = false;
 }
@@ -234,7 +234,7 @@ cl::Buffer::release_ownership()
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::cleanup()
+cl_copy::Buffer::cleanup()
 {
 	if( owner_ )
 	{
@@ -250,7 +250,7 @@ cl::Buffer::cleanup()
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::clear()
+cl_copy::Buffer::clear()
 {
 	// Clear the entire buffer
 	clear_chunk( data_, size_ );
@@ -259,7 +259,7 @@ cl::Buffer::clear()
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::resize( const size_t sz, bool clearNewMemory )
+cl_copy::Buffer::resize( const size_t sz, bool clearNewMemory )
 {
 	if( !owner_ || size_ == sz )
 	{
@@ -303,8 +303,8 @@ cl::Buffer::resize( const size_t sz, bool clearNewMemory )
 
 //--------------------------------------------------------------------------------------------------
 //
-cl::BufferUPtr
-cl::Buffer::takeout( const size_t sz, const size_t offset )
+cl_copy::BufferUPtr
+cl_copy::Buffer::takeout( const size_t sz, const size_t offset )
 {
 	// Make sure we own the buffer before doing anything with it.
 	if( !owner_ || offset + sz > size_ )
@@ -356,7 +356,7 @@ cl::Buffer::takeout( const size_t sz, const size_t offset )
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::insert( uint8_t* ptr, const size_t sz, const size_t pos )
+cl_copy::Buffer::insert( uint8_t* ptr, const size_t sz, const size_t pos )
 {
 	// Make sure we own the buffer before doing anything with it
 	if( !owner_ )
@@ -401,7 +401,7 @@ cl::Buffer::insert( uint8_t* ptr, const size_t sz, const size_t pos )
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::insert( BufferUPtr buffer, const size_t pos )
+cl_copy::Buffer::insert( BufferUPtr buffer, const size_t pos )
 {
 	Buffer* tmp = buffer.release();
 	insert( tmp->data(), tmp->size(), pos );
@@ -410,7 +410,7 @@ cl::Buffer::insert( BufferUPtr buffer, const size_t pos )
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::append( uint8_t* ptr, const size_t sz )
+cl_copy::Buffer::append( uint8_t* ptr, const size_t sz )
 {
 	insert( ptr, sz, size() );
 }
@@ -418,7 +418,7 @@ cl::Buffer::append( uint8_t* ptr, const size_t sz )
 //--------------------------------------------------------------------------------------------------
 //
 void
-cl::Buffer::append( cl::BufferUPtr buffer )
+cl_copy::Buffer::append( BufferUPtr buffer )
 {
 	if( !parentBuffer_ )
 	{
@@ -429,8 +429,8 @@ cl::Buffer::append( cl::BufferUPtr buffer )
 
 //--------------------------------------------------------------------------------------------------
 //
-cl::BufferUPtr
-cl::Buffer::clone()
+cl_copy::BufferUPtr
+cl_copy::Buffer::clone()
 {
 	return std::move( unique_buffer( data_, size_, true, true ) );
 }
@@ -438,7 +438,7 @@ cl::Buffer::clone()
 //--------------------------------------------------------------------------------------------------
 //
 size_t
-cl::Buffer::write( const uint8_t* d, size_t s, size_t offset )
+cl_copy::Buffer::write( const uint8_t* d, size_t s, size_t offset )
 {
 	if( !owner_ )
 	{
@@ -462,7 +462,7 @@ cl::Buffer::write( const uint8_t* d, size_t s, size_t offset )
 //--------------------------------------------------------------------------------------------------
 //
 size_t
-cl::Buffer::write( UniqueBufferPtr buffer, size_t offset )
+cl_copy::Buffer::write( UniqueBufferPtr buffer, size_t offset )
 {
 	UniqueBufferPtr bufferPtr = std::move( buffer );
 	return write( bufferPtr->data(), bufferPtr->size(), offset );
@@ -471,7 +471,7 @@ cl::Buffer::write( UniqueBufferPtr buffer, size_t offset )
 //--------------------------------------------------------------------------------------------------
 //
 size_t
-cl::Buffer::read( uint8_t* d, size_t s, size_t offset ) const
+cl_copy::Buffer::read( uint8_t* d, size_t s, size_t offset ) const
 {
 	if( (offset + s) > size_ )
 	{

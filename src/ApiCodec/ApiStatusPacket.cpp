@@ -38,11 +38,11 @@ ApiStatusPacket::~ApiStatusPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr ApiStatusPacket::encode()
+cl_copy::BufferUPtr ApiStatusPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( 1 + 8 + 16 + 16 + 8 + 1 + 1 + 2 + 2 + 2 );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 1 + 8 + 16 + 16 + 8 + 1 + 1 + 2 + 2 + 2 );
 
 	(*buffer)[cpt++] = static_cast<uint8_t>( imuReseted );
 
@@ -128,7 +128,7 @@ cl::BufferUPtr ApiStatusPacket::encode()
 //
 void ApiStatusPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

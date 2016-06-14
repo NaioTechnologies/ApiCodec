@@ -32,11 +32,11 @@ HaScreenPacket::~HaScreenPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr HaScreenPacket::encode()
+cl_copy::BufferUPtr HaScreenPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( 16 + 16 );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 16 + 16 );
 
 	for( uint i = 0 ; i < 16 ; i++ )
 	{
@@ -55,7 +55,7 @@ cl::BufferUPtr HaScreenPacket::encode()
 //
 void HaScreenPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 

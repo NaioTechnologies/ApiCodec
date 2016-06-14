@@ -11,9 +11,9 @@ public:
 	ApiIhmAskEnumPacket( uint8_t id,	char topLine[20], char question[20], uint8_t optionCount, char option[20][20], uint8_t defaultOption, char unit[20] );
 	~ApiIhmAskEnumPacket( );
 
-	virtual cl::BufferUPtr encode() override;
+	virtual cl_copy::BufferUPtr encode() override;
 
-	virtual void decode( uint8_t *buffer, uint bufferSize ) override;
+	virtual void decode( uint8_t *buffer, uint32_t bufferSize ) override;
 
 	virtual uint8_t getPacketId() override
 	{

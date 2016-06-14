@@ -32,11 +32,11 @@ HaGpsPacket::~HaGpsPacket( )
 
 //=============================================================================
 //
-cl::BufferUPtr HaGpsPacket::encode()
+cl_copy::BufferUPtr HaGpsPacket::encode()
 {
 	uint cpt = 0;
 
-	cl::BufferUPtr buffer = cl::unique_buffer( 8 + 8 + 8 + 8 + 1 + 1 + 1 + 8 );
+	cl_copy::BufferUPtr buffer = cl_copy::unique_buffer( 8 + 8 + 8 + 8 + 1 + 1 + 1 + 8 );
 
 	cl::u8Array< 8 > encodedTime = cl::u64_to_u8Array( time );
 	cl::u8Array< 8 > encodedLat = cl::double_to_u8Array( lat );
@@ -80,7 +80,7 @@ cl::BufferUPtr HaGpsPacket::encode()
 //
 void HaGpsPacket::decode( uint8_t *buffer, uint bufferSize )
 {
-	ignore( bufferSize );
+	util_copy::ignore( bufferSize );
 
 	uint cpt = getStartPayloadIndex();
 
