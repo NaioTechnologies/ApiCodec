@@ -90,8 +90,6 @@ typedef enum _erreur {
 	ERR_TROU_CULTURE = 1,
 	ERR_FIN_NON_TROUVEE = 2,
 	ERR_FIN = 3,
-	ERR_OBSTACLE = 4,
-	ERR_MOUSTACHE = 5,
 	ERR_ROUE_BLOQUEE = 6,
 	ERR_DEMI_TOUR_RATE = 7,
 	ERR_LIDAR = 8,
@@ -106,10 +104,8 @@ typedef enum _erreur {
 typedef enum _manoeuvre {
 	MAN_NONE = 0,
 	MAN_DEG_OUTIL = 1,
-	MAN_MOUSTACHE = 2,
 	MAN_DEBOURRAGE = 3,
 	MAN_DEBOUR_LAT = 4,
-	MAN_OBSTACLE = 5,
 } MANOEUVRE;
 
 typedef enum _batterie_type
