@@ -1,3 +1,4 @@
+#include <iostream>
 #include "HaLidarPacket.hpp"
 #include "vitals/CLByteConversion.h"
 
@@ -72,5 +73,4 @@ void HaLidarPacket::decode( uint8_t *buffer, uint bufferSize )
 	{
 		albedo[ i ] = buffer[cpt++];
 	}
-
 }

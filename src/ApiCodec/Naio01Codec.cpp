@@ -1,5 +1,6 @@
 #include <vitals/CLArray.h>
 #include <vitals/CLByteConversion.h>
+#include <iostream>
 #include "Naio01Codec.hpp"
 #include "ApiPostPacket.hpp"
 #include "ApiGpsPacket.hpp"
@@ -86,6 +87,11 @@ BaseNaio01PacketPtr Naio01Codec::decodeOneWholePacket( uint8_t *buffer, uint buf
 
 			uint32_t payloadSize = cl::u8Array_to_u32( payloadSizeBuffer );
 			uint32_t wholePacketSize = payloadSize + 6 + 1 + 4 + 4;
+
+//			std::cout << " packet payloadSize : " << payloadSize << std::endl;
+//			std::cout << " packet wholePacketSize : " << wholePacketSize << std::endl;
+//			std::cout << " packet bufferSize : " << bufferSize << std::endl;
+//			std::cout << " packet packetType : " << static_cast<int>( packetType ) << std::endl;
 
 			if( bufferSize == wholePacketSize )
 			{
@@ -351,6 +357,15 @@ bool Naio01Codec::decode( uint8_t *buffer, uint bufferSize, bool &packetHeaderDe
 		// WHOLE PACKET RECEIVED TRY DECODING
 		else if( currentBufferPos == static_cast<int>( 6 + 1 + 4 + currentPayloadSize + 4 - 1 ) )
 		{
+//			std::cout << " packet : " << std::endl;
+//
+//			for( int xx = 0 ; xx < currentBufferPos ; xx++)
+//			{
+//				std::cout << static_cast<int>( workingBuffer[xx] ) << " ";
+//			}
+//
+//			std::cout <<  std::endl;
+
 			BaseNaio01PacketPtr packet = decodeOneWholePacket( workingBuffer, ( 6 + 1 + 4 + currentPayloadSize + 4 ) );
 
 			if( packet != nullptr )

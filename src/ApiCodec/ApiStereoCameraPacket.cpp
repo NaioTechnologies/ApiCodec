@@ -1,3 +1,4 @@
+#include <iostream>
 #include "ApiStereoCameraPacket.hpp"
 #include "vitals/CLByteConversion.h"
 
@@ -66,6 +67,8 @@ void ApiStereoCameraPacket::decode( uint8_t *buffer, uint bufferSize )
 	encodedSize[3] = buffer[ cpt++ ];
 
 	uint32_t dataSize = cl::u8Array_to_u32( encodedSize );
+
+	//std::cout << "ApiStereoCameraPacket encodedSize " << static_cast<int>(dataSize) << std::endl;
 
 	dataBuffer = cl_copy::unique_buffer( dataSize );
 

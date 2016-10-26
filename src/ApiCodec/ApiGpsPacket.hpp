@@ -18,7 +18,7 @@ public:
 public:
 	ApiGpsPacket( );
 
-	ApiGpsPacket( GpsType gpsType_, uint64_t time_, double lat_, double lon_, double alt_,
+	ApiGpsPacket( GpsType gpsType_, ulong time_, double lat_, double lon_, double alt_,
 				  uint8_t unit_, uint8_t satUsed_, uint8_t quality_, double groundSpeed_,
 				  double trackOrientation_ );
 
