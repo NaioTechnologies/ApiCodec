@@ -3,7 +3,6 @@
 
 #include "BaseNaio01Packet.hpp"
 #include "Naio01Codec.hpp"
-#include "../../../../../../../usr/include/stdint.h"
 
 #define APIRUNPLOTPACKET_MAX_ROWS 100
 
