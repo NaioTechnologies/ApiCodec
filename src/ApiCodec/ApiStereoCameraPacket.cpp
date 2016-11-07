@@ -1,6 +1,6 @@
-#include <iostream>
 #include "ApiStereoCameraPacket.hpp"
 #include "vitals/CLByteConversion.h"
+#include <cstring>
 
 //=============================================================================
 //
@@ -41,10 +41,12 @@ cl_copy::BufferUPtr ApiStereoCameraPacket::encode()
 	(*buffer)[cpt++] = static_cast<uint8_t>( encodedSize[2] );
 	(*buffer)[cpt++] = static_cast<uint8_t>( encodedSize[3] );
 
-	for ( uint i = 0; i < dataBuffer->size(); i++ )
-	{
-		(*buffer)[cpt++] = static_cast<uint8_t>( dataBuffer->at(i) );
-	}
+//	for ( uint i = 0; i < dataBuffer->size(); i++ )
+//	{
+//		(*buffer)[cpt++] = static_cast<uint8_t>( dataBuffer->at(i) );
+//	}
+
+	std::memcpy( &(*buffer)[cpt++], &(*dataBuffer)[ 0 ], dataBuffer->size() );
 
 	return std::move( getPreparedBuffer( std::move( buffer ), getPacketId() ) );
 }
@@ -68,12 +70,12 @@ void ApiStereoCameraPacket::decode( uint8_t *buffer, uint bufferSize )
 
 	uint32_t dataSize = cl::u8Array_to_u32( encodedSize );
 
-	//std::cout << "ApiStereoCameraPacket encodedSize " << static_cast<int>(dataSize) << std::endl;
-
 	dataBuffer = cl_copy::unique_buffer( dataSize );
 
-	for( uint i = 0 ; i < dataSize ; i++ )
-	{
-		(*dataBuffer)[i] = buffer[ cpt++ ];
-	}
+//	for( uint i = 0 ; i < dataSize ; i++ )
+//	{
+//		(*dataBuffer)[i] = buffer[ cpt++ ];
+//	}
+
+	std::memcpy( &(*dataBuffer)[ 0 ], &buffer[ cpt++ ], dataSize );
 }
